@@ -10,8 +10,9 @@ namespace REST_LABS_BLL.Implementation
 {
     public class Task2_BL: ITask2_BL
     {
-        private List<int> GetList(string data)
+        private Dictionary<int,int> GetList(string data)
         {
+            var result = new Dictionary<int,int>();
             string input = data;
             if (string.IsNullOrEmpty(input))
             {
@@ -23,16 +24,15 @@ namespace REST_LABS_BLL.Implementation
             if (numbers.All(x => int.TryParse(x, out int res)))
             {
                 var list = numbers.Select(x => int.Parse(x)).ToList();
-
-                return list;
+                int counter = 0;
+                result = list.ToDictionary(item => counter++, item =>item);
             }
             else
             {
                 throw new ArgumentException("Incorrect input numbers!");
             }
+            return result;
         }
-
-        #region Part1
 
         public async Task<string> GetResultTask2Async(Task2 input)
         {
@@ -40,55 +40,24 @@ namespace REST_LABS_BLL.Implementation
         }
         public string GetResultTask2(Task2 input)
         {
-            var list = GetListAfterDeletion(input);
+            Dictionary<int,int> dictionary = GetList(input.Data);
+            var resultDictionary = dictionary.Where(item => IsLocalMax(item, dictionary)).ToDictionary(item=>item.Key, item=> item.Value);
 
             string result = "[";
-
-            for (int i = 0; i < list.Count; i++)
+            
+            foreach (var item in resultDictionary)
             {
-                if (i != list.Count - 1)
-                {
-                    result += $"{list[i]}, ";
-                }
-                else
-                {
-                    result += $"{list[i]}";
-                }
-            }
 
+                result += !(item.Key == resultDictionary.Last().Key) ? $"({item.Key}, {item.Value}), " : $"({item.Key}, { item.Value})";
+            }
             result += "]";
             return result;
         }
 
-
-        private List<int> GetListAfterDeletion(Task2 input)
+        private bool IsLocalMax(KeyValuePair<int,int> elem, Dictionary<int,int> dictionary)
         {
-            var list = GetList(input.Data);
-
-            //var sortedFirstN = list.OrderBy(u => u).Take(Int32.Parse(input.N)).ToList();
-
-            return new List<int>();//RemoveFirstEntry(list, sortedFirstN);
+            return (elem.Key == 0 || (dictionary[elem.Key - 1] < elem.Value)) && ((elem.Key == (dictionary.Count - 1))||(dictionary[elem.Key + 1]< elem.Value));
         }
 
-        private List<int> RemoveFirstEntry(List<int> elements, List<int> sortedFirstN)
-        {
-            List<int> result = new List<int>();
-
-            elements.ForEach(item =>
-            {
-                if (sortedFirstN.Contains(item))
-                {
-                    sortedFirstN.Remove(item);
-                }
-                else
-                {
-                    result.Add(item);
-                }
-            });
-            return result;
-        }
-
-
-        #endregion
     }
 }
