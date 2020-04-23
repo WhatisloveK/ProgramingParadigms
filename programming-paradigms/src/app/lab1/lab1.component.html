@@ -1,0 +1,28 @@
+<div class="container main">
+    <h2>The first Lab:</h2>
+    <div>
+        <h3>Task 1</h3>
+        <p>You sholud remove N minimal elements from the list.
+            In such way that they
+        </p>
+        <p>Ex. N=2 List: [7,3,4,1]</p>
+        <p>Result: [7, 4]</p>
+        <label for="input_1">Enter N: </label>
+        <input id="input_1" class="form-control" placeholder="Number of elements for deletion" [(ngModel)]="data.n">
+        <label for="input_1">Enter the list: </label>
+        <input id="input_1" class="form-control" placeholder="Enter numbers..." [(ngModel)]="data.list">
+        <button type="button" class="btn btn-primary" (click)="findResult1()">Find result</button>
+        <p><span>Result: {{result1}}</span></p>
+    </div>
+    <br>
+    <div>
+        <h3>Task 2</h3>
+        <p>You should display element of list in case if the index of element is square number</p>
+        <p>Ex. List: [1,2,3,4,5,6,7,8,9]</p>
+        <p>Result: [1,4,9]</p>
+        <label for="input_2">Enter the list: </label>
+        <input id="input_2" class="form-control" placeholder="Enter numbers..." [(ngModel)]="data2">
+        <button type="button" class="btn btn-primary" (click)="findResult2()">Find result</button>
+        <p><span>Result: {{result2}}</span></p>
+    </div>
+</div>
