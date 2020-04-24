@@ -23,9 +23,8 @@ namespace REST_LABS_BLL.Implementation
 
             if (numbers.All(x => int.TryParse(x, out int res)))
             {
-                var list = numbers.Select(x => int.Parse(x)).ToList();
                 int counter = 0;
-                result = list.ToDictionary(item => counter++, item =>item);
+                result = numbers.Select(x => int.Parse(x)).ToDictionary(item => counter++, item =>item);
             }
             else
             {
