@@ -45,6 +45,7 @@ namespace REST_LABS
         {
             services.AddScoped<ITask1_BL, Task1_BL>();
             services.AddScoped<ITask2_BL, Task2_BL>();
+            services.AddScoped<ITask3_BL, Task3_BL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
