@@ -22,11 +22,11 @@ namespace REST_LABS.Controllers
 
         [HttpPost]
         [Route("task")]
-        public async Task<ActionResult<string>> SolveTask([FromBody] Automat automat)
+        public async Task<ActionResult<string>> SolveTask([FromBody] Task3 model)
         {
             try
             {
-                var result = await _helper.GetResultTask2Async(automat);
+                var result = await _helper.GetResultTask2Async(model.Automat);
                 var key = Guid.NewGuid().ToString();
 
                 _keyResults.Add(key, result);

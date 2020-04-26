@@ -13,7 +13,7 @@ namespace REST_LABS_XUnitTests
         public void GetWordBySymbolTest()
         {
             //Arrange 
-
+            Task3_BL helper = new Task3_BL();
             Automat automat = new Automat
             {
                 StartState = 1,
@@ -32,7 +32,7 @@ namespace REST_LABS_XUnitTests
                     new Transition{CurrentState = 5, Symbol = "a", NextState = 5 }
                 }
             };
-            Task3_BL helper = new Task3_BL(automat);
+            helper.SetAutomat(automat);
 
             //Act
             string result = helper.GetWordBySymbol(new List<int> { 1 }, "a", 0);
@@ -46,6 +46,7 @@ namespace REST_LABS_XUnitTests
         public void GetWordBySymbolReturnNull()
         {
             //Arrange 
+            Task3_BL helper = new Task3_BL();
             Automat automat = new Automat
             {
                 StartState = 1,
@@ -64,7 +65,8 @@ namespace REST_LABS_XUnitTests
                     new Transition{CurrentState = 5, Symbol = "a", NextState = 5 }
                 }
             };
-            Task3_BL helper = new Task3_BL(automat);
+            
+            helper.SetAutomat(automat);
 
             //Act
             string actual = helper.GetWordBySymbol(new List<int> { 1 }, "b", 0);
@@ -78,6 +80,7 @@ namespace REST_LABS_XUnitTests
         public void GetWordBySymbolReturnNotNull()
         {
             //Arrange 
+            Task3_BL helper = new Task3_BL();
             Automat automat = new Automat
             {
                 StartState = 1,
@@ -96,7 +99,7 @@ namespace REST_LABS_XUnitTests
                     new Transition{CurrentState = 5, Symbol = "a", NextState = 5 }
                 }
             };
-            Task3_BL helper = new Task3_BL(automat);
+            helper.SetAutomat(automat);
 
             //Act
             string actual = helper.GetWordBySymbol(new List<int> { 1 }, "b", 0);
@@ -110,6 +113,7 @@ namespace REST_LABS_XUnitTests
         public void GetResultTask2()
         {
             //Arrange 
+            Task3_BL helper = new Task3_BL();
             Automat automat = new Automat
             {
                 StartState = 1,
@@ -128,7 +132,7 @@ namespace REST_LABS_XUnitTests
                     new Transition{CurrentState = 5, Symbol = "a", NextState = 5 }
                 }
             };
-            Task3_BL helper = new Task3_BL(automat);
+            helper.SetAutomat(automat);
 
             //Act
             string actual = helper.GetResultTask2(automat);

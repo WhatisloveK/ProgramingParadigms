@@ -4,10 +4,13 @@ using System.Text;
 
 namespace REST_LABS_BLL.Models
 {
-    
+    public class Task3
+    {
+        public Automat Automat { get; set; }
+    }
+
     public class Automat
     {
-        public List<int> States { get; set; }
         public List<Transition> Transitions { get; set; }
         public int StartState { get; set; }
         public List<int> FinalStates { get; set; }

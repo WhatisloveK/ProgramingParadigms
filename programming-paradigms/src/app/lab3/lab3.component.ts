@@ -48,7 +48,7 @@ export class Lab3Component implements OnInit {
     let automat = this.getAutomat();
     let lengthString:string = this.myForm.value["Length"]; 
     let length = parseInt(lengthString);
-
+    debugger
     this.service.findResult(automat).subscribe((key:string)=>{
       this.service.getResult(key).subscribe((data:string)=>{
         this.result = data;

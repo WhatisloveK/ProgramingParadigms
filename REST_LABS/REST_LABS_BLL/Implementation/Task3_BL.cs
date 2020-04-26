@@ -12,7 +12,7 @@ namespace REST_LABS_BLL.Implementation
     {
         private Automat automat;
 
-        public Task3_BL(Automat automat)
+        public void SetAutomat(Automat automat)
         {
             this.automat = automat;
         }
