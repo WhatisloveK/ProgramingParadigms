@@ -6,14 +6,18 @@ var prefix="https://localhost:44309/api/";
 export const environment = {
   production: false,
   lab1:{
-    findResult1: prefix+"lab1/task1",
-    getResult1:prefix+"lab1/get1",
-    findResult2: prefix+"lab1/task2",
-    getResult2:prefix+"lab1/get2"
+    findResult1: prefix + "lab1/task1",
+    getResult1: prefix + "lab1/get1",
+    findResult2: prefix + "lab1/task2",
+    getResult2: prefix + "lab1/get2"
   },
   lab2:{
-    findResult:prefix+"lab2/task",
-    getResult:prefix+"lab2/get"
+    findResult:prefix + "lab2/task",
+    getResult:prefix + "lab2/get"
+  },
+  lab3:{
+    findResult: prefix + "lab3/task",
+    getResult: prefix + "lab3/get"
   }
 };
 
