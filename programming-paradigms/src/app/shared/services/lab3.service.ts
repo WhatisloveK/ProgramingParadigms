@@ -11,8 +11,11 @@ export class Lab3Service{
 
     findResult(automat: Automat){
         const body = {
-            Automat: automat
+            Transitions: automat.Transitions,
+            StartState: automat.StartState,
+            FinalStates: automat.FinalStates            
         }
+        debugger
         let headers=new HttpHeaders({
             "Content-Type": "text/json"
         });

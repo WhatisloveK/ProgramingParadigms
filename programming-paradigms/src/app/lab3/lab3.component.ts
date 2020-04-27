@@ -14,14 +14,14 @@ export class Lab3Component implements OnInit {
   title:string;
   result:string;
 
-  myForm : FormGroup;
+  automatForm : FormGroup;
   constructor(private service:Lab3Service) { }
 
   ngOnInit() {
     this.title="Lab 3";
     this.result = "";
 
-    this.myForm = new FormGroup({
+    this.automatForm = new FormGroup({
       "StartState": new FormControl("", [Validators.required]),
       "FinalStates": new FormControl("", [Validators.required]),
       "Transitions": new FormArray([
@@ -31,13 +31,13 @@ export class Lab3Component implements OnInit {
   }
 
   addTransition(){
-    (<FormArray>this.myForm.controls["Transitions"]).push(new FormControl("", Validators.required));
+    (<FormArray>this.automatForm.controls["Transitions"]).push(new FormControl("", Validators.required));
   }
 
   deleteTransition(){
-    let length = (<FormArray>this.myForm.controls["Transitions"]).length;
+    let length = (<FormArray>this.automatForm.controls["Transitions"]).length;
     if(length>1){
-      (<FormArray>this.myForm.controls["Transitions"]).removeAt(length-1);
+      (<FormArray>this.automatForm.controls["Transitions"]).removeAt(length-1);
     }
     else{
       alert("Must be at least one transition!");
@@ -46,7 +46,6 @@ export class Lab3Component implements OnInit {
 
   findResult(){
     let automat = this.getAutomat();
-    let lengthString:string = this.myForm.value["Length"]; 
     this.service.findResult(automat).subscribe((key:string)=>{
       this.service.getResult(key).subscribe((data:string)=>{
         this.result = data;
@@ -63,16 +62,16 @@ export class Lab3Component implements OnInit {
   private getAutomat():Automat{
     let automat:Automat = new Automat();
 
-    let startStateString:string = this.myForm.value["StartState"];
-    automat.StartState = parseInt(startStateString);
+    let startState:string = this.automatForm.value["StartState"];
+    automat.StartState = parseInt(startState);
 
-    let finalStatesString:string= this.myForm.value["FinalStates"];
-    let finalStatesArr =  finalStatesString.split(",");
+    let finalStates:string= this.automatForm.value["FinalStates"];
+    let finalStatesArr =  finalStates.split(",");
     finalStatesArr.forEach(elem=>{
       automat.FinalStates.push(parseInt(elem));
     });
 
-    let transitionStrings:string[] = this.myForm.value["Transitions"];
+    let transitionStrings:string[] = this.automatForm.value["Transitions"];
 
     transitionStrings.forEach(elem=>{
       let transition = elem.split(",");

@@ -7,6 +7,13 @@
     margin: 3px;
 }
 
+.transitionDeleteButton{
+    background-color: red !important;
+}
+
+input{
+    width: 48%;
+}
 .transitionButtons{
     margin:5px;
     margin-left: 0;

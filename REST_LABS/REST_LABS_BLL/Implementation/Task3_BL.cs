@@ -49,7 +49,7 @@ namespace REST_LABS_BLL.Implementation
                     return currentWord;
                 }
             }
-            return "";
+            return "Words consisting of the same characters do not translate the automaton to its final state";
         }
 
         public string GetWord(int numberOfSteps, string symbol)
@@ -66,7 +66,7 @@ namespace REST_LABS_BLL.Implementation
         public string GetWordBySymbol(List<int> reachedStates, string symbol, int step)
         {
             
-            var currentReachedState = automat.Transitions.Where(item => (item.CurrentState == reachedStates.Last()) && (item.Symbol == symbol)).Select(t=>t.NextState).First();
+            var currentReachedState = automat.Transitions.Where(item => (item.CurrentState == reachedStates.Last()) && (item.Symbol == symbol)).Select(t=>t.NextState).FirstOrDefault();
             if (automat.FinalStates.Contains(currentReachedState))
             {
                 return GetWord(++step, symbol);

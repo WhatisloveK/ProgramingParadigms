@@ -1,12 +1,12 @@
 <div class="container main">
     <h3>{{title}}</h3>
-    <form [formGroup]="myForm" novalidate >
+    <form [formGroup]="automatForm" novalidate >
         <div class="form-group">
             <label>Start state</label>
             <input class="form-control" name="startState" formControlName="StartState" />
              
             <div class="alert alert-danger"
-                *ngIf="myForm.controls['StartState'].invalid && myForm.controls['StartState'].touched">
+                *ngIf="automatForm.controls['StartState'].invalid && automatForm.controls['StartState'].touched">
                 Start state is empty!
             </div>
         </div>
@@ -15,19 +15,19 @@
             <input class="form-control" name="finalStates" formControlName="FinalStates" />
              
             <div class="alert alert-danger"
-                *ngIf="myForm.controls['FinalStates'].invalid && myForm.controls['FinalStates'].touched">
+                *ngIf="automatForm.controls['FinalStates'].invalid && automatForm.controls['FinalStates'].touched">
                 Final states is empty!
             </div>
         </div>
         
         <Label>Transitions</Label>
         <div formArrayName="Transitions">
-            <div class="form-group" *ngFor="let transition of myForm.controls['Transitions']['controls']; let i = index">
+            <div class="form-group" *ngFor="let transition of automatForm.controls['Transitions']['controls']; let i = index">
                 <label style="font-size: 0.8em;">Transition</label>
                 <input class="form-control" formControlName="{{i}}" />
 
                 <div class="alert alert-danger"
-                    *ngIf="myForm.controls['Transitions']['controls'][i].invalid && myForm.controls['Transitions']['controls'][i].touched">
+                    *ngIf="automatForm.controls['Transitions']['controls'][i].invalid && automatForm.controls['Transitions']['controls'][i].touched">
                         Transition states is empty!
                 </div>
             </div>
@@ -36,12 +36,12 @@
             <button class="btn btn-info transitionButtons" (click)="addTransition()">
                 Add transition
             </button>
-            <button class="btn btn-info transitionButtons" (click)="deleteTransition()">
+            <button class="btn btn-info transitionButtons transitionDeleteButton" (click)="deleteTransition()">
                 Delete transition
             </button>
             <br>
-            <button class="btn btn-primary" [disabled]="myForm.invalid" (click)="findResult()">
-                Find Result
+            <button class="btn btn-primary" [disabled]="automatForm.invalid" (click)="findResult()">
+                Get Result
             </button>
         </div>
     </form>
